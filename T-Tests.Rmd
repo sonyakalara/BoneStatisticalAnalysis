@@ -1,0 +1,52 @@
+---
+title: "181212_Bone_Statistics"
+author: "Sonya Kalara"
+date: "12/13/2018"
+output: html_document
+---
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(stats)
+
+raw <- read_excel("Vismaya_FinalData.xlsx")
+```
+
+```{r}
+
+singleTable <- function(x) {
+  single <- raw %>% 
+    filter(Type == x)
+  
+  print(x)
+  return(single)
+}
+
+tTests <- function(x){
+  gibHum <- t.test(x$Gibbons, x$Humans, paired = FALSE)
+  macHum <- t.test(x$Macaques, x$Humans, paired = FALSE)
+  macGib <- t.test(x$Macaques, x$Gibbons, paired = FALSE)
+  chiGib <- t.test(x$Chimps, x$Gibbons, paired = FALSE)
+  chiMac <- t.test(x$Chimps, x$Macaques, paired = FALSE)
+  chiHum <- t.test(x$Humans, x$Chimps, paired = FALSE)
+  
+  print(gibHum)
+  print(macHum)
+  print(macGib)
+  print(chiGib)
+  print(chiMac)
+  print(chiHum)
+  
+}
+```
+
+```{r}
+tTests(singleTable("Medial Notch Length"))
+tTests(singleTable("Notch Width"))
+tTests(singleTable("Medial Radius Length"))
+tTests(singleTable("Notch Length"))
+tTests(singleTable("Dorsal Depth"))
+tTests(singleTable("Ventral Depth"))
+```
+
