@@ -5,7 +5,7 @@ date: "12/13/2018"
 output: html_document
 ---
 
-```{r}
+```{r echo = FALSE, include = FALSE}
 library(readxl)
 library(tidyverse)
 library(stats)
@@ -13,7 +13,7 @@ library(stats)
 raw <- read_excel("Vismaya_FinalData.xlsx")
 ```
 
-```{r}
+```{r echo = FALSE}
 
 singleTable <- function(x) {
   single <- raw %>% 
@@ -41,7 +41,7 @@ tTests <- function(x){
 }
 ```
 
-```{r}
+```{r echo = FALSE}
 tTests(singleTable("Medial Notch Length"))
 tTests(singleTable("Notch Width"))
 tTests(singleTable("Medial Radius Length"))
